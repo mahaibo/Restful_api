@@ -1,6 +1,8 @@
-#!flask/bin/python
+#!/usr/bin/env python
 from flask import Flask, jsonify, abort, make_response, request, url_for
 from flask.ext.httpauth import HTTPBasicAuth
+
+from crawler.dispatcher import Dispatcher
 
 auth = HTTPBasicAuth()
 app = Flask(__name__)
@@ -19,6 +21,12 @@ tasks = [
         'done': False
     }
 ]
+
+class Task(object):
+    """docstring for ClassName"""
+    def __init__(self, ctype):
+        super(Task, self).__init__()
+        self.type = ctype
 
 @auth.get_password
 def get_password(username):
@@ -97,6 +105,14 @@ def delete_task(task_id):
         abort(404)
     tasks.remove(task[0])
     return jsonify({'result': True})
+
+# # crawle 
+# @app.route('/todo/api/v1.0/crawle/', methods=['GET'])
+# def start_crawle():
+#     print 'start_crawle'
+#     task = Task("1")
+#     dispatcher = Dispatcher(task, self.refresh)
+#     dispatcher.dispatch()
 
 if __name__ == '__main__':
 	app.run(debug=True)
