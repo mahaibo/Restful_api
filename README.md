@@ -1,3 +1,5 @@
+
+##pip install virtualenv
 ##virtualenv flask
 
 ##pip install flask
@@ -5,6 +7,10 @@
 ##pip install flask_httpauth
 
 ##pip install flask_restful
+
+##pip install passlib
+
+##sudo pip install flask_sqlalchemy
 
 ```python
 	pip install gunicorn
